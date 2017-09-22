@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>md</title>
+    <link rel="stylesheet" href="../css/md.css" />
+    <link rel="stylesheet" href="../css/default.min.css" />
+</head>
+<body>
+<div id="container">
+    <div id="edit-nav" class="nav-button">
+        <ul class="edit-nav-button">
+            <li>编辑导航</li>
+        </ul>
+    </div>
+    <!--编辑-->
+    <div id="editor-column" class="pull-left">
+        <div id="editor-panel">
+            <div id="wmd-input">
+                <textarea id="ace_text-input" class="ace_text-input">
+### 1. 阅读工具栏
+
+![tool-manager](https://www.zybuluo.com/static/img/toolbar-reader.jpg)
+
+### 2. 高亮一段代码[^code]
+
+```python
+@requires_authorization
+class SomeClass:
+    pass
+
+if __name__ == '__main__':
+    # A comment
+    print 'hello world'
+```
+
+> * 整理知识，学习笔记
+> * 发布日记，杂文，所见所想
+> * 撰写发布技术文稿（代码支持）
+> * 撰写发布学术论文（LaTeX 公式支持）
+
+                </textarea>
+            </div>
+        </div>
+    </div>
+    <!--预览-->
+    <div id="preview-column" class="pull-right">
+        <div id="preview-panel" class="panel-right">
+            <div id="wmd-preview" class="wmd-preview">
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../js/md.js"></script>
+<script type="text/javascript" src="../js/marked.min.js"></script>
+<script type="text/javascript" src="../js/highlight.min.js"></script>
+<script type="text/javascript">
+    /*初始化
+    *     导航栏
+    *     获取当前textarea val 初始化样式
+    * textarea加载监听事件 addEventListener
+    * tab键使用
+    */
+
+    $(document).ready(function(){
+        init();
+        save();
+    });
+
+    //加载导航栏
+    function init() {
+        console.log("init=================================");
+    }
+
+    //setMyOptions
+    function setMyOptions() {
+        var rendererMD = new marked.Renderer();
+        marked.setOptions({
+            renderer: rendererMD,
+            gfm: true,
+            tables: true,
+            breaks: false,
+            pedantic: false,
+            sanitize: false,
+            smartLists: true,
+            smartypants: false
+        });
+        marked.setOptions({
+            highlight : function (code) {
+                return hljs.highlightAuto(code).value;
+            }
+        });
+
+    }
+
+    //加载textarea
+    function save() {
+        setMyOptions();
+        var MarkdownHtml = marked($(".ace_text-input").val());
+        console.log(MarkdownHtml);
+        document.getElementById('wmd-preview').innerHTML=MarkdownHtml;
+    }
+
+    //监听事件
+    document.getElementById("ace_text-input").addEventListener("input", myFunction);
+    function myFunction() {
+        save();
+    }
+</script>
+</body>
+</html>
