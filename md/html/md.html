@@ -66,7 +66,7 @@ if __name__ == '__main__':
     */
 
     $(document).ready(function(){
-        init();
+        //init();
         save();
     });
 
@@ -75,9 +75,17 @@ if __name__ == '__main__':
         console.log("init=================================");
     }
 
+
     //setMyOptions
     function setMyOptions() {
         var rendererMD = new marked.Renderer();
+        var markedRenderer  = new marked.Renderer();
+        markedRenderer.code = function (code, lang) {
+            console.log("code=============="+code);
+            console.log("lang=============="+lang);
+            return "<div class=\"code-diagram\">" + code + "</div>";
+        };
+
         marked.setOptions({
             renderer: rendererMD,
             gfm: true,
@@ -94,12 +102,17 @@ if __name__ == '__main__':
             }
         });
     }
-    
+
     //加载textarea
     function save() {
         setMyOptions();
         var MarkdownHtml = marked($(".ace_text-input").val());
-        console.log(MarkdownHtml);
+        console.log("MarkdownHtml===============1"+MarkdownHtml);
+        var reg_start = new RegExp("<pre>","g");
+        var reg_end = new RegExp("</pre>","g");
+        MarkdownHtml = MarkdownHtml.replace(reg_start,"<div class = \"code-back\"><pre>");
+        MarkdownHtml = MarkdownHtml.replace(reg_end,"</pre></div>");
+        console.log("MarkdownHtml===============2"+MarkdownHtml);
         document.getElementById('wmd-preview').innerHTML=MarkdownHtml;
     }
 
