@@ -10,14 +10,19 @@
 <div id="container">
     <div id="edit-nav" class="nav-button">
         <ul class="edit-nav-button">
-            <li>编辑导航</li>
+            <li><a style="cursor: pointer" onclick="navModel('save')">保存</a></li>
+            <li><a style="cursor: pointer" onclick="navModel('release')">发布</a></li>
+            <li><a style="cursor: pointer" onclick="navModel('e')">编辑</a></li>
+            <li><a style="cursor: pointer" onclick="navModel('p')">预览</a></li>
+            <li><a style="cursor: pointer" onclick="navModel('r')">阅读</a></li>
+            <li><a style="cursor: pointer" onclick="navModel('h')">帮助</a></li>
         </ul>
     </div>
     <!--编辑-->
     <div id="editor-column" class="pull-left">
         <div id="editor-panel">
             <div id="wmd-input">
-                <textarea id="ace_text-input" class="ace_text-input">
+                <textarea id="ace_text-input" class="ace_text-input" onkeydown="editTab()">
 ### 1. 阅读工具栏
 
 ![tool-manager](https://www.zybuluo.com/static/img/toolbar-reader.jpg)
@@ -64,57 +69,18 @@ if __name__ == '__main__':
     * textarea加载监听事件 addEventListener
     * tab键使用
     */
+    function editTab(){
+        console.log("keyCode======================"+event.keyCode)
+        switch (event.keyCode){
+            case (8) :  //backspave
 
-    $(document).ready(function(){
-        //init();
-        save();
-    });
+            case (9) : //tab
 
-    //加载导航栏
-    function init() {
-        console.log("init=================================");
+            case (13) : //enter
+
+        }
     }
 
-
-    //setMyOptions
-    function setMyOptions() {
-        //var markedRenderer  = new marked.Renderer(); 设置样式
-        var rendererMD = new marked.Renderer();
-        marked.setOptions({
-            renderer: rendererMD,
-            gfm: true,
-            tables: true,
-            breaks: false,
-            pedantic: false,
-            sanitize: false,
-            smartLists: true,
-            smartypants: false
-        });
-        marked.setOptions({
-            highlight : function (code) {
-                return hljs.highlightAuto(code).value;
-            }
-        });
-    }
-
-    //加载textarea
-    function save() {
-        setMyOptions();
-        var MarkdownHtml = marked($(".ace_text-input").val());
-        console.log("MarkdownHtml===============1"+MarkdownHtml);
-        //var reg_start = new RegExp("<pre>","g");
-        //var reg_end = new RegExp("</pre>","g");
-        //MarkdownHtml = MarkdownHtml.replace(reg_start,"<div class = \"code-back\"><pre>");
-        //MarkdownHtml = MarkdownHtml.replace(reg_end,"</pre></div>");
-        //console.log("MarkdownHtml===============2"+MarkdownHtml);
-        document.getElementById('wmd-preview').innerHTML=MarkdownHtml;
-    }
-
-    //监听事件
-    document.getElementById("ace_text-input").addEventListener("input", myFunction);
-    function myFunction() {
-        save();
-    }
 
 </script>
 </body>
