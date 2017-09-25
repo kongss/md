@@ -78,6 +78,7 @@ if __name__ == '__main__':
 
     //setMyOptions
     function setMyOptions() {
+        //var markedRenderer  = new marked.Renderer(); 设置样式
         var rendererMD = new marked.Renderer();
         marked.setOptions({
             renderer: rendererMD,
@@ -101,11 +102,11 @@ if __name__ == '__main__':
         setMyOptions();
         var MarkdownHtml = marked($(".ace_text-input").val());
         console.log("MarkdownHtml===============1"+MarkdownHtml);
-        var reg_start = new RegExp("<pre>","g");
-        var reg_end = new RegExp("</pre>","g");
-        MarkdownHtml = MarkdownHtml.replace(reg_start,"<div class = \"code-back\"><pre>");
-        MarkdownHtml = MarkdownHtml.replace(reg_end,"</pre></div>");
-        console.log("MarkdownHtml===============2"+MarkdownHtml);
+        //var reg_start = new RegExp("<pre>","g");
+        //var reg_end = new RegExp("</pre>","g");
+        //MarkdownHtml = MarkdownHtml.replace(reg_start,"<div class = \"code-back\"><pre>");
+        //MarkdownHtml = MarkdownHtml.replace(reg_end,"</pre></div>");
+        //console.log("MarkdownHtml===============2"+MarkdownHtml);
         document.getElementById('wmd-preview').innerHTML=MarkdownHtml;
     }
 

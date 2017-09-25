@@ -28,20 +28,16 @@
     float: left;
 }
 
-
 .panel-right{
     padding: 10px;
 }
 
-.code-back{
-    background: #e7ebf1;
-    padding: 6px;
-    border:1px solid #d6d6d6;
-}
-
+/*标签样式*/
 pre{
+    padding: 20px;
     font-size: 14px;
-    margin-left: 15px;
+    background: #e7ebf1;
+    border:1px solid #d6d6d6;
 }
 
 ul{
