@@ -30,6 +30,8 @@
 }
 
 .ace_text-input{
+    font-size: 15px;
+    font-family: Menlo, "Ubuntu Mono", Consolas, "Courier New", "Microsoft Yahei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
     height: 800px;
     width: 100%;
 }
