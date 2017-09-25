@@ -79,13 +79,6 @@ if __name__ == '__main__':
     //setMyOptions
     function setMyOptions() {
         var rendererMD = new marked.Renderer();
-        var markedRenderer  = new marked.Renderer();
-        markedRenderer.code = function (code, lang) {
-            console.log("code=============="+code);
-            console.log("lang=============="+lang);
-            return "<div class=\"code-diagram\">" + code + "</div>";
-        };
-
         marked.setOptions({
             renderer: rendererMD,
             gfm: true,
