@@ -57,6 +57,6 @@ function navModel(model) {
         $(".pull-left").hide();
         $(".pull-right").show();
         $(".pull-left").css("width", "50%");
-        $(".pull-right").css("margin-left", "500px");
+        $(".pull-right").css("margin-left", "525px");
     }
 }
